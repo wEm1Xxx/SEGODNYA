@@ -1,10 +1,160 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Заезд гостя</h2>
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Поиск бронирования по телефону</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" id="phoneInput" class="form-control" placeholder="Введите телефон гостя">
+            </div>
+            <div class="col-md-2">
+                <button id="searchBtn" class="btn btn-primary">Найти</button>
+            </div>
+        </div>
+        <div id="results" class="mt-3" style="display: none;">
+            <h6>Найденные бронирования</h6>
+            <select id="bookingSelect" class="form-select mb-3">
+                <option value="">Выберите бронирование</option>
+            </select>
+            <div id="roomSelectBlock" style="display: none;">
+                <h6>Выберите номер для заселения</h6>
+                <select id="roomSelect" class="form-select mb-3">
+                    <option value="">Загрузка...</option>
+                </select>
+                <button id="checkinBtn" class="btn btn-success">Заселить</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Подтверждённые бронирования</h5>
+    </div>
+    <div class="card-body p-0">
+        <table class="table mb-0">
+            <thead>
+                <tr><th>ID</th><th>Гость</th><th>Телефон</th><th>Номер</th><th>Даты</th><th>Действие</th></tr>
+            </thead>
+            <tbody>
+                {% for booking in confirmed_bookings %}
+                <tr>
+                    <td>{{ booking.id }}</td>
+                    <td>{{ booking.guest.user.get_full_name() if booking.guest and booking.guest.user else '—' }}</td>
+                    <td>{{ booking.guest.user.phone if booking.guest and booking.guest.user else '—' }}</td>
+                    <td>{{ booking.room.room_number if booking.room else '—' }}</td>
+                    <td>{{ booking.check_in_date }} — {{ booking.check_out_date }}</td>
+                    <td>
+                        <form method="POST" action="/checkin/do" class="d-flex gap-2">
+                            <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                            <select name="room_id" class="form-select form-select-sm" style="width: 150px;" required>
+                                <option value="">Выбрать номер</option>
+                                {% for room in available_rooms %}
+                                <option value="{{ room.id }}">{{ room.room_number }} ({{ room.room_type.name }})</option>
+                                {% endfor %}
+                            </select>
+                            <button type="submit" class="btn btn-sm btn-success">Заселить</button>
+                        </form>
+                    </td>
+                </tr>
+                {% else %}
+                <tr><td colspan="6" class="text-center text-muted">Нет подтверждённых бронирований</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const searchBtn = document.getElementById('searchBtn');
+    const phoneInput = document.getElementById('phoneInput');
+    const resultsDiv = document.getElementById('results');
+    const bookingSelect = document.getElementById('bookingSelect');
+    const roomSelectBlock = document.getElementById('roomSelectBlock');
+    const roomSelect = document.getElementById('roomSelect');
+    const checkinBtn = document.getElementById('checkinBtn');
+
+    // Загрузка доступных номеров
+    async function loadAvailableRooms() {
+        const res = await fetch('/rooms/api');
+        const rooms = await res.json();
+        return rooms.filter(r => r.status === 'available');
+    }
+
+    searchBtn.addEventListener('click', async () => {
+        const phone = phoneInput.value.trim();
+        if (!phone) {
+            alert('Введите телефон');
+            return;
+        }
+
+        const res = await fetch(`/bookings/search?phone=${phone}`);
+        const data = await res.json();
+
+        if (data.bookings.length === 0) {
+            alert('Бронирования не найдены');
+            resultsDiv.style.display = 'none';
+            return;
+        }
+
+        bookingSelect.innerHTML = '<option value="">Выберите бронирование</option>';
+        data.bookings.forEach(b => {
+            bookingSelect.innerHTML += `<option value="${b.id}" data-room-type="${b.room_number}">#${b.id} — ${b.guest_name} — ${b.check_in} / ${b.check_out} — ${b.status}</option>`;
+        });
+
+        resultsDiv.style.display = 'block';
+        roomSelectBlock.style.display = 'none';
+    });
+
+    bookingSelect.addEventListener('change', async () => {
+        const bookingId = bookingSelect.value;
+        if (!bookingId) {
+            roomSelectBlock.style.display = 'none';
+            return;
+        }
+
+        const rooms = await loadAvailableRooms();
+
+        if (rooms.length === 0) {
+            roomSelect.innerHTML = '<option value="">Нет доступных номеров</option>';
+            roomSelect.disabled = true;
+        } else {
+            roomSelect.innerHTML = '<option value="">Выберите номер</option>';
+            rooms.forEach(r => {
+                roomSelect.innerHTML += `<option value="${r.id}">${r.room_number} — ${r.room_type}</option>`;
+            });
+            roomSelect.disabled = false;
+        }
+
+        roomSelectBlock.style.display = 'block';
+    });
+
+    checkinBtn.addEventListener('click', async () => {
+        const bookingId = bookingSelect.value;
+        const roomId = roomSelect.value;
+
+        if (!bookingId || !roomId) {
+            alert('Выберите бронирование и номер');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('booking_id', bookingId);
+        formData.append('room_id', roomId);
+
+        const res = await fetch('/checkin/do', { method: 'POST', body: formData });
+        const data = await res.json();
+
+        alert(data.msg || (res.ok ? 'Заезд выполнен' : 'Ошибка'));
+
+        if (res.ok) {
+            window.location.href = '/dashboard';
+        }
+    });
+</script>
+{% endblock %}

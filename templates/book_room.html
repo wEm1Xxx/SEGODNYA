@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Бронирование номера{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card dashboard-card">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0"><i class="bi bi-calendar-check"></i> Бронирование номера</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label class="form-label">Выберите номер</label>
+                            <select name="room_id" class="form-select" required>
+                                <option value="">-- Выберите номер --</option>
+                                {% for room in rooms %}
+                                <option value="{{ room.id }}">
+                                    {{ room.room_number }} — {{ room.room_type.name }} ({{ room.capacity }} чел.) — {{ room.room_type.base_price }} ₽/сутки
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Дата заезда</label>
+                                <input type="date" name="check_in_date" class="form-control" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Дата выезда</label>
+                                <input type="date" name="check_out_date" class="form-control" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-gold w-100">Забронировать</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,10 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Выезд гостя{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2>Выезд гостя</h2>
+
+    <div class="card dashboard-card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0">Активные проживания</h5>
+        </div>
+        <div class="card-body p-0">
+            <div id="staysContainer">Загрузка...</div>
+        </div>
+    </div>
+</div>
+
+<script>
+async function loadStays() {
+    const res = await fetch('/checkout/api');
+    const data = await res.json();
+    const container = document.getElementById('staysContainer');
+
+    if (!data.stays || data.stays.length === 0) {
+        container.innerHTML = '<div class="text-center p-4 text-muted">Нет активных проживаний</div>';
+        return;
+    }
+
+    let html = '<table class="table mb-0"><thead><tr><th>ID</th><th>Гость</th><th>Номер</th><th>Заезд</th><th>Сумма</th><th>Действие</th></tr></thead><tbody>';
+    for (const s of data.stays) {
+        html += `<tr>
+            <td>${s.id}</td>
+            <td>${s.guest_name}</td>
+            <td>${s.room_number}</td>
+            <td>${s.check_in_time}</td>
+            <td>${s.total_amount} ₽</td>
+            <td><form method="POST" action="/checkout/do"><input type="hidden" name="stay_id" value="${s.id}"><button type="submit" class="btn btn-sm btn-danger">Выезд</button></form></td>
+        </tr>`;
+    }
+    html += '</tbody></table>';
+    container.innerHTML = html;
+}
+loadStays();
+</script>
+{% endblock %}

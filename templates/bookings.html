@@ -1,10 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Управление бронированиями</h2>
+
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Добавить бронирование</h5>
+    </div>
+    <div class="card-body">
+        <form method="POST" action="/bookings/create" class="row g-2">
+            <div class="col-md-2">
+                <input type="text" name="guest_id" class="form-control" placeholder="ID гостя" required>
+            </div>
+            <div class="col-md-2">
+                <input type="text" name="room_id" class="form-control" placeholder="ID номера" required>
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="check_in_date" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+                <input type="date" name="check_out_date" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+                <input type="text" name="total_price" class="form-control" placeholder="Стоимость" required>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-success w-100">Создать</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header bg-dark text-white">
+        <h5 class="mb-0">Список бронирований</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr><th>ID</th><th>Гость</th><th>Номер</th><th>Заезд</th><th>Выезд</th><th>Статус</th><th>Сумма</th></tr>
+            </thead>
+            <tbody>
+                {% for b in bookings %}
+                <tr>
+                    <td>{{ b.id }}</td>
+                    <td>{{ b.guest.user.get_full_name() if b.guest and b.guest.user else '—' }}</td>
+                    <td>{{ b.room.room_number if b.room else '—' }}</td>
+                    <td>{{ b.check_in_date }}</td>
+                    <td>{{ b.check_out_date }}</td>
+                    <td>{{ b.status }}</td>
+                    <td>{{ b.total_price }} ₽</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

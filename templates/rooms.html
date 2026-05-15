@@ -1,10 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Управление номерами{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <h2 class="mb-4"><i class="bi bi-door-open"></i> Управление номерами</h2>
+
+    <div class="card dashboard-card mb-4">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0"><i class="bi bi-plus-circle"></i> Добавить номер</h5>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="/rooms/create" class="row g-3">
+                <div class="col-md-3">
+                    <input type="text" name="room_number" class="form-control" placeholder="Номер комнаты" required>
+                </div>
+                <div class="col-md-3">
+                    <select name="room_type_id" class="form-select" required>
+                        <option value="">Тип номера</option>
+                        {% for rt in room_types %}
+                        <option value="{{ rt.id }}">{{ rt.name }} ({{ rt.base_price }} ₽)</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <input type="number" name="capacity" class="form-control" placeholder="Вместимость" required>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-success w-100">Добавить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card dashboard-card">
+        <div class="card-header bg-dark text-white">
+            <h5 class="mb-0"><i class="bi bi-list-ul"></i> Список номеров</h5>
+        </div>
+        <div class="card-body p-0">
+            <table class="table mb-0">
+                <thead>
+                    <tr><th>ID</th><th>Номер</th><th>Тип</th><th>Вместимость</th><th>Статус</th><th>Действие</th></tr>
+                </thead>
+                <tbody>
+                    {% for room in rooms %}
+                    <tr>
+                        <td>{{ room.id }}</td>
+                        <td>{{ room.room_number }}</td>
+                        <td>{{ room.room_type.name }}</td>
+                        <td>{{ room.capacity }}</td>
+                        <td>
+                            <span class="badge {% if room.status == 'available' %}bg-success{% elif room.status == 'occupied' %}bg-danger{% elif room.status == 'cleaning' %}bg-warning{% else %}bg-secondary{% endif %}">
+                                {{ room.status }}
+                            </span>
+                        </td>
+                        <td>
+                            <form method="POST" action="/rooms/{{ room.id }}/status" class="d-flex gap-2">
+                                <select name="status" class="form-select form-select-sm" style="width: 130px;">
+                                    <option value="available">Свободен</option>
+                                    <option value="occupied">Занят</option>
+                                    <option value="cleaning">На уборке</option>
+                                    <option value="maintenance">На ремонте</option>
+                                </select>
+                                <button type="submit" class="btn btn-sm btn-primary">Изменить</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

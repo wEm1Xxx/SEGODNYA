@@ -1,26 +1,175 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="55c0b5ea-3a99-48f3-9c79-412edc71ba5a" name="Changes" comment="" />
+    <list default="true" id="55c0b5ea-3a99-48f3-9c79-412edc71ba5a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/Firuz.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/123" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Connection/db_connection.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/BookingServicesController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/BookingsController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CheckinController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CheckoutController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CleaningController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/CleaningTasksController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/GuestsController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/RolesController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/RoomTypesController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/RoomsController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/ServicesController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/StaysController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/UsersController.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Controllers/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Base.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/BookingServices.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Bookings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/CleaningTasks.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Guests.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Roles.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/RoomTypes.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Rooms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Services.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Stays.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Users.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/book_room.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/bookings.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/checkout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/cleaning.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/rooms.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="3DiDh8KQnnxDIWISfLYVkgG27IL" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.UsersController.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;Python.db_connection.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager" selected="Python.app">
+    <configuration name="UsersController" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Firuz" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Controllers" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Controllers/UsersController.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="app" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Firuz" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="db_connection" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Firuz" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Connection" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="RUN_TOOL" value="" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Connection/db_connection.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.app" />
+        <item itemvalue="Python.UsersController" />
+        <item itemvalue="Python.db_connection" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
